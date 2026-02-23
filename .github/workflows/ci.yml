@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, ko-build]
   pull_request:
     branches: [main]
 
@@ -24,7 +24,7 @@ jobs:
 
   docker:
     needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -47,4 +47,4 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64,linux/arm/v7
-          tags: ghcr.io/turbootzz/vaultwarden-api:latest
+          tags: ghcr.io/jordanruthe/vaultwarden-api:latest
